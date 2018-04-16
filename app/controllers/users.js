@@ -21,9 +21,10 @@ const encodeToken = (token) => {
 
 const getToken = () =>
   new Promise((resolve, reject) =>
-    crypto.randomBytes(16, (err, data) =>
-      err ? reject(err) : resolve(data.toString('base64'))
-    )
+    crypto.randomBytes(16, (err, data) => {
+      console.log('data is', data)
+      return err ? reject(err) : resolve(data.toString('base64'))
+    })
   )
 
 const index = (req, res, next) => {
@@ -69,6 +70,7 @@ const signup = (req, res, next) => {
 const signin = (req, res, next) => {
   const credentials = req.body.credentials
   const search = { email: credentials.email }
+  console.log('req.body is', req.body)
   User.findOne(search)
     .then(user =>
       user ? user.comparePassword(credentials.password)
@@ -76,13 +78,22 @@ const signin = (req, res, next) => {
     .then(user =>
       getToken().then(token => {
         user.token = token
+        console.log('token is now', token)
         return user.save()
       }))
+    .then((user) => {
+      console.log('req.body after getting token', req.body)
+      return user
+    })
     .then(user => {
       user = user.toObject()
       delete user.passwordDigest
       user.token = encodeToken(user.token)
       res.json({ user })
+      console.log('user is', user)
+    })
+    .then(() => {
+      console.log('req.body just before .catch is', req.body)
     })
     .catch(makeErrorHandler(res, next))
 }

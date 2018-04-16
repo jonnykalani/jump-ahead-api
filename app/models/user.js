@@ -6,8 +6,8 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = new mongoose.Schema({
   organization: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   email: {
     type: String,
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    unique: true,
+    // unique: true,
     required: true
   },
   phone_number: {
@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   company_description: {
     type: String,
-    unique: true,
+    // unique: true
     required: true
   },
   token: {
@@ -54,7 +54,7 @@ userSchema.plugin(uniqueValidator)
 
 userSchema.methods.comparePassword = function (password) {
   const _this = this
-
+  console.log('password and this.psdigest are', password, _this.passwordDigest)
   return new Promise((resolve, reject) =>
     bcrypt.compare(password, _this.passwordDigest, (err, data) =>
         err ? reject(err) : data ? resolve(data) : reject(new Error('Not Authorized')))
