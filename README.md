@@ -4,9 +4,9 @@ JUMP AHEAD is a web application that allows users to create websites and blogpos
 \
 ERD: https://imgur.com/a/hOO1F \
 Wireframes: https://i.imgur.com/kwfQEaa.jpg \
-Deployed Website: https://jump-ahead-jmen.github.io/jump-ahead/ \
-Link to CLIENT repo: https://github.com/jump-ahead-jmen/jump-ahead \
-Link to deployed API: https://jump-ahead-api.herokuapp.com/ \
+Deployed Website: https://jonnykalani.github.io/jump-ahead/ \
+Link to CLIENT repo: https://github.com/jonnykalani/jump-ahead \
+Link to deployed API: https://cryptic-shelf-20832.herokuapp.com/ \
 \
 User Stories:\
 As a user, I want to be able to log in and out of my account and edit my own resources.\
@@ -16,9 +16,10 @@ As a user, I want to be able to post webpages that others can view by paying $19
 As a user, I want to be able to view other companys' blogs and webpages.\
 As a user, I want to be able to chage my password.\
 As a user, I want others to be able to see what organization I'm associated with.\
+As, a user, I want to be able to upload images and retrieve them.
 \
 Technologies used:\
-HTML, CSS, SASS, JavaScript, AJAX, Bootstrap, Handlebars, Stripe\
+HTML, CSS, SASS, JavaScript, AJAX, Bootstrap, Handlebars, Stripe, AWS/SDK/S3\
 \
 Unsolved Problems:\
 There are several improvements yet to be made to this application in future iterations:\
@@ -55,3 +56,11 @@ users\
   -signin\
   -signout\
   -changepw  
+  
+  images\
+  -index
+  -indexByUser
+  -show
+  -create
+  -update
+  -destroy
